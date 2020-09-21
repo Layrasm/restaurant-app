@@ -1,9 +1,13 @@
 import React from "react";
-import { Checkbox, Header, Icon, Button } from "semantic-ui-react";
+import {  Header, Button, Icon } from "semantic-ui-react";
 
-const Menu = ({name}) => (
+const Menu = ({ id , name, deleteMenu, updateMenu }) => (
+<>
+  <Header>{name}</Header>
+  <Button onClick={() => deleteMenu(id)}>Delete</Button>
+  <Button onClick={() => updateMenu(id)}> Edit </Button>
 
-<p>{name}</p>
+</>
 );
 
 

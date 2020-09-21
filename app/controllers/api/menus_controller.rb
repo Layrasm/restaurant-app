@@ -4,9 +4,11 @@ class Api::MenusController < ApplicationController
   end
 
   def create
-    menu = Menu.new(Menu_params)
-    if menu.save
+    menu = Menu.new(menu_params)
+    if (menu.save)
       render json: menu
+    else 
+        render json: {errors: menu.errors }, status: :unprocessable_entity
     end
   end
  
@@ -18,14 +20,14 @@ class Api::MenusController < ApplicationController
 
 
   def destroy
-    Menu.find(params[:id]).destroy
-    render json: {message: "Menu deleted"}
+   menu = Menu.find(params[:id]).destroy
+    render json: {message: "Menu deleted", menu: menu}
   end
 
 
     private 
     
-    def Menu_params
+    def menu_params
         params.require(:menu).permit(:name)
     end
 end
